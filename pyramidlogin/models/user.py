@@ -1,3 +1,6 @@
+import bcrypt
+from typing import Union
+
 from sqlalchemy import (
     Column,
     Index,
@@ -8,11 +11,24 @@ from sqlalchemy import (
 from .meta import Base
 
 
-class MyModel(Base):
-    __tablename__ = 'models'
-    id = Column(Integer, primary_key=True)
-    name = Column(Text)
-    value = Column(Integer)
+class User(Base):
 
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    login = Column(Text, unique=True)
+    password = Column(Text)
 
-Index('my_index', MyModel.name, unique=True, mysql_length=255)
+    def encode_password(self, password: str) -> None:
+        """genera un codigo hash a partir de la pasword ingresada y la guarda en el atributo password"""
+        self.password = bcrypt.hashpw(password.encode(
+            'utf8'), bcrypt.gensalt()).decode('utf8')
+
+    def decode_pasword(self, password_ingresada: str) -> Union[str, str]:
+        """verifica si el password en forma hash es igual al password ingresado """
+        if self.password is not None:
+            password_actual = self.password.encode('utf8')
+            return bcrypt.checkpw(password_ingresada.encode('utf8'), password_actual)
+
+        return False
+
+Index('user_login', User.login, unique=True, mysql_length=255)

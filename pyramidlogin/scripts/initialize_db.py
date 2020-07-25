@@ -12,8 +12,16 @@ def setup_models(dbsession):
     Add or update models / fixtures in the database.
 
     """
-    model = models.mymodel.MyModel(name='one', value=1)
-    dbsession.add(model)
+    user1 = models.user.User()
+    user1.login = 'ihribernik'
+    user1.encode_password('MiPasswordUltraSegura')
+    
+    user2 = models.user.User()
+    user2.login = 'admin'
+    user2.encode_password('admins')
+    
+    dbsession.add(user1)
+    dbsession.add(user2)
 
 
 def parse_args(argv):

@@ -1,20 +1,15 @@
-from pyramid.view import view_config
-from pyramid.response import Response
+from pyramid.url import route_path
+from pyramid.view import view_config, view_defaults
+from pyramid.security import forget
+from pyramid.httpexceptions import (
+    HTTPFound,
+    HTTPForbidden,
+    HTTPNotFound,
+    )
 
-from sqlalchemy.exc import DBAPIError
+# from sqlalchemy.exc import DBAPIError
 
 from .. import models
-
-
-@view_config(route_name='home', renderer='../templates/mytemplate.jinja2')
-def my_view(request):
-    try:
-        query = request.dbsession.query(models.MyModel)
-        one = query.filter(models.MyModel.name == 'one').first()
-    except DBAPIError:
-        return Response(db_err_msg, content_type='text/plain', status=500)
-    return {'one': one, 'project': 'pyramidlogin'}
-
 
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
@@ -30,3 +25,22 @@ might be caused by one of the following things:
 After you fix the problem, please restart the Pyramid application to
 try it again.
 """
+
+
+@view_defaults(renderer='../templates/login.jinja2')
+class PyramidLoginViews:
+    """Class-based view: para manejar todas las vistas de la aplicacion en una sola clase """
+
+    def __init__(self, request):
+        self.request = request
+        # self.logged_in = request.userid_connected
+
+    @view_config(route_name='home', renderer='../templates/home.jinja2')
+    def home(self):
+        # print('estoy en el home')
+        return {}
+
+    @view_config(route_name='login', renderer='../templates/login.jinja2')
+    def login(self):
+        # print('estoy en el login')
+        return {}
