@@ -11,6 +11,7 @@ system-packages:
 
 virtual-env:
 	virtualenv env
+	. env/bin/activate
 
 python-packages:
 	pip install --upgrade pip setuptools
@@ -29,7 +30,6 @@ tests:
 	pytest
 
 run:
-	. env/bin/activate
-	pserve development.ini
+	pserve development.ini --reload
 
 all: clean install tests run

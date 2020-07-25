@@ -1,11 +1,11 @@
-from pyramid.url import route_path
+# from pyramid.url import route_path
 from pyramid.view import view_config, view_defaults
-from pyramid.security import forget
+# from pyramid.security import forget, remember
 from pyramid.httpexceptions import (
     HTTPFound,
     HTTPForbidden,
     HTTPNotFound,
-    )
+)
 
 # from sqlalchemy.exc import DBAPIError
 
@@ -37,10 +37,20 @@ class PyramidLoginViews:
 
     @view_config(route_name='home', renderer='../templates/home.jinja2')
     def home(self):
-        # print('estoy en el home')
+        print('estoy en el home')
         return {}
 
     @view_config(route_name='login', renderer='../templates/login.jinja2')
     def login(self):
-        # print('estoy en el login')
+        """ funcion """
+        request = self.request
+        
+        
+        usuario = ''
+        password = ''
+        print(request.POST)
+        if 'form.submitted' in request.params:
+            usuario = request.POST.get('usuario')
+            password = request.POST.get('password')
+            
         return {}

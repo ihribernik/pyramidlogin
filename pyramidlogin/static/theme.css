@@ -1,4 +1,17 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: linear-gradient(to top left, black ,darkcyan);
+}
+
 .center-login {
   width: 100%;
   /* Firefox */
@@ -39,7 +52,7 @@
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
 }
 
 .footerCentered {

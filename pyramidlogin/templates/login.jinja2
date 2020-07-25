@@ -10,15 +10,15 @@
       Login
     </div>
     <div class="card-body">
-      <form acction="{{ url }}" method="POST">
+      <form acction="{{ url }}" method="post">
         <input type="hidden" value="{{ proxima_url}}">
         <div class="form-group">
-          <label for="inputUsuario">Usuario</label>
-          <input type="text" class="form-control" id="inputUsuario" placeholder="Usuario" value="{{ usuario }}" />
+          <label for="usuario">Usuario</label>
+          <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" value="{{ usuario }}" />
         </div>
         <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password" value="{{ password }}" />
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ password }}" />
         </div>
         <button type="submit" name="form.submitted" value="Login" class="btn btn-primary">
           Iniciar Session
