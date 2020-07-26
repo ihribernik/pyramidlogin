@@ -1,4 +1,5 @@
 # from pyramid.url import route_path
+from pyramidlogin.models.user import User
 from pyramid.view import view_config, view_defaults
 # from pyramid.security import forget, remember
 from pyramid.httpexceptions import (
@@ -8,8 +9,7 @@ from pyramid.httpexceptions import (
 )
 
 # from sqlalchemy.exc import DBAPIError
-
-from .. import models
+from .. import models  # flake8: noqa
 
 db_err_msg = """\
 Pyramid is having a problem using your SQL database.  The problem
@@ -33,24 +33,28 @@ class PyramidLoginViews:
 
     def __init__(self, request):
         self.request = request
-        # self.logged_in = request.userid_connected
 
     @view_config(route_name='home', renderer='../templates/home.jinja2')
     def home(self):
-        print('estoy en el home')
+
         return {}
 
     @view_config(route_name='login', renderer='../templates/login.jinja2')
     def login(self):
         """ funcion """
-        request = self.request
-        
-        
+
+        proxima_url = self.request.params.get('next', self.request.referrer)
+        if not proxima_url:
+            proxima_url = self.request.route_url('login')
         usuario = ''
         password = ''
-        print(request.POST)
-        if 'form.submitted' in request.params:
-            usuario = request.POST.get('usuario')
-            password = request.POST.get('password')
-            
+        if 'form.submitted' in self.request.params:
+            usuario = self.request.POST.get('usuario')
+            password = self.request.POST.get('password')
+            usuario_db = self.request.dbsession.query(
+                User).filter_by(login=usuario).first()
+            print(usuario_db)
+            if usuario_db and User.decode_pasword(password_ingresada=password):
+                print('el usuario y la password coinciden')
+
         return {}

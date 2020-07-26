@@ -18,6 +18,10 @@ class User(Base):
     login = Column(Text, unique=True)
     password = Column(Text)
 
+    def __init__(self, login, password):
+        self.login = login
+        self.password = password
+
     def encode_password(self, password: str) -> None:
         """genera un codigo hash a partir de la pasword ingresada y la guarda en el atributo password"""
         self.password = bcrypt.hashpw(password.encode(
@@ -30,5 +34,9 @@ class User(Base):
             return bcrypt.checkpw(password_ingresada.encode('utf8'), password_actual)
 
         return False
+
+    def __rep__(self):
+        return f'<Usuario: {self.login}>'
+
 
 Index('user_login', User.login, unique=True, mysql_length=255)
