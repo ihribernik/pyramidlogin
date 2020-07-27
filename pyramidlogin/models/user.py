@@ -1,12 +1,7 @@
-import bcrypt
 from typing import Union
 
-from sqlalchemy import (
-    Column,
-    Index,
-    Integer,
-    Text,
-)
+import bcrypt
+from sqlalchemy import Column, Index, Integer, Text
 
 from .meta import Base
 

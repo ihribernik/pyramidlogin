@@ -1,13 +1,11 @@
-import bcrypt
-import typing
-
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
+
 from ..models import User
 
 
 class PoliticasAuth(AuthTktAuthenticationPolicy):
-    """subclase de AuthTktAuthenticationPolicy, """
+    """subclase de AuthTktAuthenticationPolicy, la cual se encarga de la seguridad de la aplicacion"""
 
     def authenticated_userid(self, request):
         usuario = request.usuario

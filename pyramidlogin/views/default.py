@@ -1,12 +1,9 @@
 # from pyramid.url import route_path
-from pyramidlogin.models.user import User
+from pyramid.httpexceptions import HTTPForbidden, HTTPFound
+from pyramid.security import remember
 from pyramid.view import view_config, view_defaults
-from pyramid.security import forget, remember
-from pyramid.httpexceptions import (
-    HTTPFound,
-    HTTPForbidden,
-    HTTPNotFound,
-)
+
+from pyramidlogin.models.user import User
 
 # from sqlalchemy.exc import DBAPIError
 from .. import models  # flake8: noqa
