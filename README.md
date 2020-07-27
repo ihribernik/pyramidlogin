@@ -2,9 +2,9 @@
 
 ## tabla de contenidos
 
-* [Descipcion](#Descripcion)
-* [Intalacion y levantar la aplicacion](#Instalacion)
-* [Utilizacion](#Utilizacion)
+- [Descipcion](#Descripcion)
+- [Intalacion y levantar la aplicacion](#Instalacion)
+- [Utilizacion](#Utilizacion)
 
 ## Descripcion.
 
@@ -14,6 +14,8 @@ la aplicacion cuenta con dos url con el formato (`nombreRuta`,`ruta`):
 
 1. (`login`,`/`) es el login principal.
 1. (`home`,`/home`) es el home que solo se puede tener acceso si solo se esta logeado.
+
+### `las credenciales para utilizar el login estan en la carpeta img del directorio raiz`
 
 ## Instalacion
 
@@ -70,7 +72,7 @@ la aplicacion cuenta con dos url con el formato (`nombreRuta`,`ruta`):
 
 1. cuando se quiere logearse con un usuario o contraseña incorrecta pasa lo siguiente:
    ![alt](img/contraseña_erronea.png)
-    da como respuesta:
+   da como respuesta:
    ![alt](img/fallo.png)
 
 1. cuando se logra conectar correctamente:
