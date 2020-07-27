@@ -11,7 +11,6 @@ system-packages:
 
 virtual-env:
 	virtualenv env
-	. env/bin/activate
 
 python-packages:
 	pip install --upgrade pip setuptools
