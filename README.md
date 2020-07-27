@@ -81,4 +81,4 @@ la aplicacion cuenta con dos url con el formato (`nombreRuta`,`ruta`):
 
    ![alt](img/captura_home.png)
 
-1. la siguiente pagina, `http://localhost:6543/home` muestra un abm (falta la parte de la modificacion, no la hice porque necesitaba generar otro html), en el cual se pueden dar de alta nuevos instrumentos y borrarlos de la lista.
+1. la siguiente pagina, `http://localhost:6543/home` muestra un abm (falta la parte de la modificacion, no la hice porque necesitaba generar otro html con una ruta diferente y se iba a de la consigna), en el cual se pueden dar de alta nuevos instrumentos y borrarlos de la lista.
