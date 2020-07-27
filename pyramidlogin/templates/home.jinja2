@@ -2,7 +2,7 @@
 
 {% block title %}
 home
-{% endblock title %}}
+{% endblock title %}
 
 {% block stylePer %}
 <!-- include the style -->
@@ -15,32 +15,29 @@ home
 {% block content %}
 <div class="row">
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 p-4">
-        <div id="alertEstado"></div>
+        <!-- mensaje de estado ante acciones-->
 
-        <form class="form card" method="POST">
-            <legend>Agregar Instrumento</legend>
-            <div class="form-group">
-                <label for="inputNombre">Nombre</label>
-                <input type="text" id="inputNombre" class="form-control" placeholder="Nombre instrumento" autofocus />
-            </div>
-            <div class="form-group">
-                <label for="inputDescripcion">Descripcion</label>
-                <input type="text" id="inputDescripcion" class="form-control" placeholder="Descripcion instrumento"
-                    autofocus />
-            </div>
-            <div class="form-group">
-                <label for="inputPrecio">Precio</label>
-                <input type="text" id="inputPrecio" class="form-control" placeholder="Precio instrumento" autofocus />
-            </div>
-            <div class="form-group">
-                <label for="inputCantidad">Cantidad</label>
-                <input type="text" id="inputCantidad" class="form-control" placeholder="Cantidad instrumento"
-                    autofocus />
-            </div>
-            <input type="submit" id="submit" class="btn btn-success btn-block" value="Agregar" />
-        </form>
+        <div class="form card">
+        <legend>Agregar Instrumento</legend>
+        <div class="form-group">
+            <label for="inputNombre"></label>
+            <input type="text" id="inputNombre" class="form-control" placeholder="Nombre instrumento" autofocus />
+        </div>
+        <div class="form-group">
+            <label for="inputDescripcion"></label>
+            <input type="text" id="inputDescripcion" class="form-control" placeholder="Descripcion instrumento" autofocus />
+        </div>
+        <div class="form-group">
+            <label for="inputPrecio"></label>
+            <input type="text" id="inputPrecio" class="form-control" placeholder="Precio instrumento" autofocus />
+        </div>
+        <div class="form-group">
+            <label for="inputCantidad"></label>
+            <input type="text" id="inputCantidad" class="form-control" placeholder="Cantidad instrumento" autofocus />
+        </div>
+        <input type="submit" id="submit" class="btn btn-success btn-block" value="Agregar" />
+        </div>
     </div>
-
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 p-4">
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
             <table class="table table-bordered table-dark table-res">
@@ -52,7 +49,6 @@ home
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Borrar</th>
-                        <th>Modificar</th>
                     </tr>
                 </thead>
                 <tbody id="tbodyInstrumentos"></tbody>

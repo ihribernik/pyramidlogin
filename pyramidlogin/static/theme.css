@@ -27,13 +27,6 @@ body {
   box-pack: center;
   box-align: center;
 }
-.center-login-v2 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
 
 .justify-row-center {
   float: none;
