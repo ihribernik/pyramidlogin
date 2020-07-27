@@ -26,7 +26,7 @@ try it again.
 
 @view_defaults(renderer='../templates/login.jinja2')
 class PyramidLoginViews:
-    """Class-based view: para manejar todas las vistas de la aplicacion en una sola clase """
+    """Class-based view: agrupar vistas en una sola clase django style"""
 
     def __init__(self, request):
         self.request = request
