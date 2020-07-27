@@ -1,5 +1,6 @@
 import argparse
 import sys
+import datetime
 
 from pyramid.paster import bootstrap, setup_logging
 from sqlalchemy.exc import OperationalError
@@ -15,11 +16,15 @@ def setup_models(dbsession):
     user1 = models.user.User()
     user1.login = 'ihribernik'
     user1.encode_password('MiPasswordUltraSegura')
-    
+    user1.email = 'cihribernik@gmail.com'
+    user1.fecha_registro = datetime.date.today()
+
     user2 = models.user.User()
     user2.login = 'admin'
-    user2.encode_password('admins')
-    
+    user2.encode_password('admin')
+    user2.email = 'admin@admin.com'
+    user2.fecha_registro = datetime.date.today()
+
     dbsession.add(user1)
     dbsession.add(user2)
 

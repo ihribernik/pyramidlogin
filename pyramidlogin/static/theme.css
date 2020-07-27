@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+@import url(//fonts.googleapis.com/css?family=Open + Sans:300, 400, 600, 700);
 
 html,
 body {
@@ -9,7 +9,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-image: linear-gradient(to top left, black ,darkcyan);
+  background-image: linear-gradient(to top left, black, darkcyan);
 }
 
 .center-login {
@@ -66,3 +66,11 @@ body {
   right: 0;
 }
 
+.my-custom-scrollbar {
+  position: relative;
+  height: 450px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}

@@ -1,31 +1,45 @@
 {% extends "layout.jinja2" %}
 
-{% block title %}LogIn - {% endblock title %}
+{% block title %}LogIn{% endblock title %}
+
 
 {% block content %}
-
-<div class="center-login">
-  <div class="card w-50">
-    <div class="card-header text-center bg-info">
-      Login
-    </div>
-    <div class="card-body">
-      <form acction="{{ url }}" method="post">
-        <input type="hidden" value="{{ proxima_url}}">
-        <div class="form-group">
-          <label for="usuario">Usuario</label>
-          <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario" value="{{ usuario }}" />
+<div class="row">
+  <div class="col-md-12">
+    <div class="center-login">
+      <div class="card w-50">
+        <div class="card-header text-center bg-info">
+          Login
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ password }}" />
+        <div class="alert alert-danger alert-dismissible">
+          {{mensage}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <button type="submit" name="form.submitted" value="Login" class="btn btn-primary">
-          Iniciar Session
-        </button>
-      </form>
+        <div class="card-body">
+          <form acction="{{ url }}" method="post">
+            <input name="proxima_url" type="hidden" value="{{ proxima_url}}">
+            <div class="form-group">
+              <label for="usuario">Usuario</label>
+              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario"
+                value="{{ usuario }}" />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                value="{{ password }}" />
+            </div>
+            <button type="submit" name="form.submitted" value="Login" class="btn btn-primary">
+              Iniciar Session
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
 {% endblock content %}
+
+{% block extrajs %}
+{% endblock extrajs %}

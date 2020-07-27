@@ -1,7 +1,7 @@
 # from pyramid.url import route_path
 from pyramidlogin.models.user import User
 from pyramid.view import view_config, view_defaults
-# from pyramid.security import forget, remember
+from pyramid.security import forget, remember
 from pyramid.httpexceptions import (
     HTTPFound,
     HTTPForbidden,
@@ -36,25 +36,41 @@ class PyramidLoginViews:
 
     @view_config(route_name='home', renderer='../templates/home.jinja2')
     def home(self):
+        usuario = self.request.usuario
+        if usuario is None:
+            raise HTTPForbidden
 
         return {}
 
     @view_config(route_name='login', renderer='../templates/login.jinja2')
     def login(self):
-        """ funcion """
+        """ funcion login, realiza validaciones para ver si puede logearse o no en el sistema"""
 
-        proxima_url = self.request.params.get('next', self.request.referrer)
-        if not proxima_url:
-            proxima_url = self.request.route_url('login')
+        proxima_url = self.request.route_url('home')
+
+        mensage = ''
         usuario = ''
         password = ''
+
         if 'form.submitted' in self.request.params:
             usuario = self.request.POST.get('usuario')
             password = self.request.POST.get('password')
             usuario_db = self.request.dbsession.query(
                 User).filter_by(login=usuario).first()
-            print(usuario_db)
-            if usuario_db and User.decode_pasword(password_ingresada=password):
-                print('el usuario y la password coinciden')
 
-        return {}
+            if usuario_db and usuario_db.decode_pasword(password_ingresada=password):
+
+                headers = remember(self.request, usuario_db.id)
+                print(f'esto es lo que se manda despues del login {headers}')
+
+                return HTTPFound(location=proxima_url, headers=headers)
+
+            mensage = 'fallo al iniciar session'
+            proxima_url = self.request.route_url('login')
+
+        return dict(
+            mensage=mensage,
+            url=self.request.route_url('login'),
+            proxima_url=proxima_url,
+            login=usuario,
+        )

@@ -8,24 +8,18 @@ from ..models import User
 
 class PoliticasAuth(AuthTktAuthenticationPolicy):
     """subclase de AuthTktAuthenticationPolicy, """
+
     def authenticated_userid(self, request):
-        user = request.body
-        if user is not None:
-            return None
+        usuario = request.usuario
+        if usuario is not None:
+            return usuario.id
 
-def encript_password(password: str) -> str:
-    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-
-
-def decode_password(password: str) -> str:
-    db_password = 'password'
-    return bcrypt.checkpw(password, db_password)
 
 def get_user(request):
-    usuario = request.body
-    print(f'bodi en get_ user {usuario}')
-    if usuario is not None:
-        return usuario.id
+    usuario_id = request.unauthenticated_userid
+    if usuario_id is not None:
+        user = request.dbsession.query(User).get(usuario_id)
+        return user
 
 
 def includeme(config):
