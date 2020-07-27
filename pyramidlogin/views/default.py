@@ -1,11 +1,11 @@
-# from pyramid.url import route_path
 from pyramid.httpexceptions import HTTPForbidden, HTTPFound
+from pyramid.response import Response
 from pyramid.security import remember
 from pyramid.view import view_config, view_defaults
+from sqlalchemy.exc import DBAPIError
 
 from pyramidlogin.models.user import User
 
-# from sqlalchemy.exc import DBAPIError
 from .. import models  # flake8: noqa
 
 db_err_msg = """\
@@ -52,8 +52,11 @@ class PyramidLoginViews:
         if 'form.submitted' in self.request.params:
             usuario = self.request.POST.get('usuario')
             password = self.request.POST.get('password')
-            usuario_db = self.request.dbsession.query(
-                User).filter_by(login=usuario).first()
+            try:
+                usuario_db = self.request.dbsession.query(
+                    User).filter_by(login=usuario).first()
+            except DBAPIError:
+                return Response(db_err_msg, content_type='text/plain', status=500)
 
             if usuario_db and usuario_db.decode_pasword(password_ingresada=password):
 

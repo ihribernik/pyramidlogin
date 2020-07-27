@@ -1,6 +1,6 @@
 import argparse
-import sys
 import datetime
+import sys
 
 from pyramid.paster import bootstrap, setup_logging
 from sqlalchemy.exc import OperationalError
